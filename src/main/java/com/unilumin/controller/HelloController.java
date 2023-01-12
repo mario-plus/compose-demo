@@ -1,0 +1,16 @@
+package com.unilumin.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author zxz
+ * @date 2023年01月12日 15:24
+ */
+@RestController
+public class HelloController {
+    @GetMapping("hello")
+    public String hello(){
+        return "hello";
+    }
+}
