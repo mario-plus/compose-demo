@@ -5,10 +5,9 @@ services:
     container_name: compose-demo
     ports:
       - "9999:9999"
-    links:
-      - mysql
     depends_on:
       - mysql
+#      - redis
   mysql:
     image: mysql:8.0-debian
     container_name: mysql-compose
@@ -21,5 +20,19 @@ services:
       - E:\software\docker\volume\mysql\conf:/etc/mysql/conf.d
       - E:\software\docker\volume\mysql\data:/var/log/mysql
       - E:\software\docker\volume\mysql\data:/var/lib/mysql
+
+#安装redis，需要在数据卷中添加redis.conf
+#  redis:
+#    container_name: redis-compose
+#    image: redis
+#    restart: always
+#    ports:
+#      - 6379:6379
+#    privileged: true
+#    command: redis-server /etc/redis/redis.conf --appendonly yes
+#    volumes:
+#      - E:\software\docker\volume\redis\data:/data
+#      - E:\software\docker\volume\redis\redis.conf:/etc/redis/redis.conf
+
 
 
