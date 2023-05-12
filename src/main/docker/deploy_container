@@ -1,0 +1,4 @@
+-d
+-p 9999:9999
+-v /home/compose:/home/compose
+--cap-add=SYS_PTRACE
