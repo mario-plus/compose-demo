@@ -1,0 +1,38 @@
+version: "1"
+services:
+  compose-demo:
+    image: compose-demo
+    container_name: compose-demo
+    ports:
+      - "9999:9999"
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    image: mysql:8.0-debian
+    container_name: mysql-compose
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+    volumes:
+      - /home/data/volumes/mysql/conf:/etc/mysql/conf.d
+      - /home/data/volumes/mysql/data:/var/log/mysql
+      - /home/data/volumes/mysql/data:/var/lib/mysql
+
+#安装redis，需要在数据卷中添加redis.conf
+  redis:
+    container_name: redis-compose
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+    privileged: true
+    command: redis-server /etc/redis/redis.conf --appendonly yes
+    volumes:
+      - /home/data/volumes/redis/data:/data
+      - /home/data/volumes/redis/redis.conf:/etc/redis/redis.conf
+
+
+

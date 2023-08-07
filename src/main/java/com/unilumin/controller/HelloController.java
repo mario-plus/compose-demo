@@ -19,4 +19,10 @@ public class HelloController {
     public String sayHello(@RequestParam("content") String content) {
         return content;
     }
+
+    @GetMapping("/fire")
+    public String fire(){
+        return RpcInvoker.getUserInfo();
+    }
+
 }
