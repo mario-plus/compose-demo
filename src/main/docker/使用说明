@@ -1,0 +1,19 @@
+1. 将以下4个文件移动至centos7
+/home目录下放置
+docker-compose.yml
+start.sh
+/home/compose目录下放置
+Dockerfile
+compose-demo-1.0-SNAPSHOT.jar
+
+2. 转换格式
+yum install dos2unix
+dos2unix start.sh
+
+
+3. 执行脚本文件
+sh start.sh
+
+
+
+
