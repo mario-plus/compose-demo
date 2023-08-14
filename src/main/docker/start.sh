@@ -10,7 +10,7 @@ mkdir -p /home/data/volumes/redis/redis.conf
 chmod 777 /home/data/volumes/redis/redis.conf
 echo '创建redis数据卷完成'
 echo '开始创建compose服务镜像'
-docker build -f /home/compose/Dockerfile -t /home/compose-demo/
+docker build -f /home/compose/Dockerfile -t compose-demo /home/compose/
 echo '构建compose镜像成功'
 echo '开始创建容器'
 docker compose up -d
