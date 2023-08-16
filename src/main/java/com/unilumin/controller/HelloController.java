@@ -24,5 +24,9 @@ public class HelloController {
     public String fire(){
         return RpcInvoker.getUserInfo();
     }
+    @GetMapping("/test")
+    public String sayTest(){
+        return "test";
+    }
 
 }
