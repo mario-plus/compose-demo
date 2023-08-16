@@ -20,9 +20,9 @@ echo 'Redis数据卷存在，使用原有数据卷创建容器'
 fi
 
 echo '开始创建compose服务镜像'
-sudo docker build -f /home/compose/Dockerfile -t compose-demo /home/compose/
+docker build -f /home/compose/Dockerfile -t compose-demo /home/compose/
 echo '构建compose镜像成功'
 echo '开始创建容器'
-sudo docker compose up -d
+docker compose up -d
 echo '创建容器成功'
 
