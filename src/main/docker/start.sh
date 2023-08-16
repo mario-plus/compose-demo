@@ -1,13 +1,4 @@
 #!/bin/sh
-#创建文件夹
-if [ ! -d "/home/compose" ]; then
-mkdir -p /home/compose
-else
-rm -rf /home/compose
-mkdir /home/compose
-chmod 777 /home/compose
-fi
-
 if [ ! -d "/home/data/volumes/mysql" ]; then
 mkdir -p /home/data/volumes/mysql/conf
 chmod 777 /home/data/volumes/mysql/conf
