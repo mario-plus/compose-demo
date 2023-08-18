@@ -26,6 +26,9 @@ public class LockApiController {
         this.zookeeperLockRegistry = zookeeperLockRegistry;
     }
 
+    /**
+     * 使用ApiFox进行压测
+     * */
     @GetMapping(value = "/zkLockTest")
     public String zkLockTest() throws InterruptedException {
         Lock lock1 = zookeeperLockRegistry.obtain("lock1");
@@ -33,7 +36,7 @@ public class LockApiController {
             try {
                 String name = Thread.currentThread().getName();
                 log.info("线程" + name + "获取到锁,开始执行事务");
-                Thread.sleep(3000);
+                Thread.sleep(3000);//模拟业务处理耗时
                 log.info("线程" + name + "事务执行完成");
             } catch (Exception e) {
                 e.printStackTrace();
