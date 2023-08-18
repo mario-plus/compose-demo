@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>zookeeperS</module>
-        <module>zookeeperCluster</module>
     </modules>
 
 

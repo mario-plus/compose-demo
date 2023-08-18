@@ -2,6 +2,7 @@ package com.mario.service.impl;
 
 
 import com.mario.service.ZkService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
@@ -14,6 +15,7 @@ import java.util.List;
  * @author zxz
  * @date 2023年08月18日 10:10
  */
+@Slf4j
 @Service
 public class ZkServiceImpl implements ZkService {
 
@@ -52,6 +54,7 @@ public class ZkServiceImpl implements ZkService {
     public List<String> getChildNode(String node) throws Exception {
         return curatorFramework.getChildren().forPath(node);
     }
+
 
 
 }

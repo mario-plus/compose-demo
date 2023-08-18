@@ -17,16 +17,13 @@ public class ZkApiController {
 
     final ZkService zkService;
 
-
     public ZkApiController(ZkService zkService) {
         this.zkService = zkService;
     }
 
     @GetMapping(value = "checkNode")
     public Stat checkNode(@RequestParam(name = "node") String node) throws Exception {
-        Stat stat = zkService.checkNode(node);
-        System.out.println(stat);
-        return stat;
+        return zkService.checkNode(node);
     }
 
     @GetMapping(value = "createNode")
