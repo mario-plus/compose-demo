@@ -23,7 +23,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 @EnableCaching // 开启缓存支持
-public class RedisConfig  {
+public class RedisConfig {
     @Value("${spring.redis.host}")
     private String redisHost;
 

@@ -1,10 +1,7 @@
 package com.mario.service.impl;
 
-import com.mario.config.RedisConfig;
 import com.mario.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.data.geo.*;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.Cursor;
@@ -28,6 +25,33 @@ public class RedisServiceImpl implements RedisService {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
+
+    /**
+     * Set {@param key} to hold the string {@param value} if {@param key} is absent.
+     * */
+    public boolean setIfAbsent(String key, Object value) {
+        Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent(key, value);
+        if (aBoolean == null)
+            return false;
+        return aBoolean;
+    }
+
+    public boolean setIfAbsent(String key, Object value, Long timeout, TimeUnit timeUnit) {
+        Boolean aBoolean = redisTemplate.opsForValue().setIfAbsent(key, value, timeout, timeUnit);
+        if (aBoolean == null)
+            return false;
+        return aBoolean;
+    }
+
+
+    /**
+     * Set {@param value} of {@param key} and return its old value.
+     * */
+    public boolean getAndSet(String key, Object value) {
+        Object andSet = redisTemplate.opsForValue().getAndSet(key, value);
+        return andSet != null;
+    }
+
 
     /**
      * 指定缓存失效时间

@@ -15,6 +15,18 @@ import java.util.concurrent.TimeUnit;
  */
 public interface RedisService {
 
+    /**
+     * Set {@param key} to hold the string {@param value} if {@param key} is absent.
+     */
+    boolean setIfAbsent(String key, Object value);
+
+    boolean setIfAbsent(String key, Object value, Long timeout, TimeUnit timeUnit);
+
+
+    /**
+     * Set {@param value} of {@param key} and return its old value.
+     */
+    boolean getAndSet(String key, Object value);
 
     /**
      * 指定缓存失效时间

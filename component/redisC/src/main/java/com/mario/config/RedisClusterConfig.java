@@ -1,12 +1,11 @@
 package com.mario.config;
 
 
-import org.apache.commons.lang3.StringUtils;
+
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
 import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
@@ -39,7 +38,7 @@ public class RedisClusterConfig {
         Set<HostAndPort> nodes = new HashSet<>();
         //分割出集群节点
         String[] cNodes = clusterNodes.split(",");
-        Arrays.stream(cNodes).filter(StringUtils::isNotBlank).forEach(c -> {
+        Arrays.stream(cNodes).forEach(c -> {
             String[] hp = c.split(":");
             nodes.add(new HostAndPort(hp[0], Integer.parseInt(hp[1])));
         });
