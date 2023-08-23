@@ -11,6 +11,7 @@
     <!--单独启动compose-demo需要把以下模块注释-->
     <modules>
         <module>component</module>
+        <module>cloud-alibaba</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
