@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author zxz
  * @date 2023年08月23日 17:06
  */
-@FeignClient(value = "nacosApplication1")//指定服务注册中心的
+@FeignClient(value = "nacosOpenFeignServer")//指定服务注册中心的
 @Component
 public interface NacosOpenApiService {
 
