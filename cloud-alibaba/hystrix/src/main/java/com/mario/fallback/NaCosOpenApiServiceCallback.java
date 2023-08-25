@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
 public class NaCosOpenApiServiceCallback implements NacosOpenApiService {
     @Override
     public String getServiceName() {
-        return "服务异常，熔断";
+        return "fallback:服务异常，熔断";
     }
 }
