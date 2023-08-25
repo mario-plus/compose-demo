@@ -1,9 +1,0 @@
-server:
-  port: 8014
-spring:
-  application:
-    name: nacosOpenFeignServer
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 192.168.20.133:8848

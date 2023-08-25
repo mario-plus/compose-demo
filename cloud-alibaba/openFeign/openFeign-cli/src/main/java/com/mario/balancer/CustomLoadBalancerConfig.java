@@ -3,6 +3,7 @@ package com.mario.balancer;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.loadbalancer.core.RandomLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ReactorLoadBalancer;
+import org.springframework.cloud.loadbalancer.core.RoundRobinLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory;
 import org.springframework.context.annotation.Bean;
@@ -19,8 +20,10 @@ public class CustomLoadBalancerConfig {
                                                             LoadBalancerClientFactory loadBalancerClientFactory) {
         //懒加载，第一次调用时执行
         String name = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
-        return new CustomLoadbalancer(name,loadBalancerClientFactory
-                .getLazyProvider(name, ServiceInstanceListSupplier.class));
+        return new RoundRobinLoadBalancer(loadBalancerClientFactory
+                .getLazyProvider(name, ServiceInstanceListSupplier.class), name);
+//        return new CustomLoadbalancer(name, loadBalancerClientFactory
+//                .getLazyProvider(name, ServiceInstanceListSupplier.class));
     }
 
 

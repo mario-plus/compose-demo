@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author zxz
  * @date 2023年08月23日 17:06
  */
-@FeignClient(value = "nacosOpenFeignServer")//指定服务注册中心的
+@FeignClient(value = "nacos-server")//指定服务注册中心的
 @Component
-@LoadBalancerClient(name = "nacosOpenFeignServer", configuration = CustomLoadBalancerConfig.class)//负载均衡策略，name是服务名称
+@LoadBalancerClient(name = "nacos-server", configuration = CustomLoadBalancerConfig.class)//负载均衡策略，name是服务名称
 public interface NacosOpenApiService {
 
     @GetMapping("/getServiceName")
