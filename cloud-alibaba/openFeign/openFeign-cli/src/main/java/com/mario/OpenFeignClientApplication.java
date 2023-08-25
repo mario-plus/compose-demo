@@ -9,7 +9,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author zxz
  * @date 2023年08月23日 16:18
  */
-
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
