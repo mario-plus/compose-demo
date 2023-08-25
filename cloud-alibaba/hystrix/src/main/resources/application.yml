@@ -1,0 +1,13 @@
+server:
+  port: 8400
+
+spring:
+  application:
+    name: hystrix
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.20.133:8848
+feign:
+  circuitbreaker:
+    enabled: true

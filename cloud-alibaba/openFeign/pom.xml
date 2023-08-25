@@ -13,8 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>openFeign-cli</module>
-        <module>openFeign-server</module>
-        <module>openFeign-server2</module>
     </modules>
 
     <dependencies>

@@ -5,5 +5,5 @@ package com.mario.service;
  * @date 2023年08月23日 15:49
  */
 public interface OpenApiService {
-    String getServiceName();
+    String getServiceName() throws Exception;
 }

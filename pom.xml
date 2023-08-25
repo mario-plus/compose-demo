@@ -12,7 +12,6 @@
     <modules>
         <module>component</module>
         <module>cloud-alibaba</module>
-        <module>hystrix</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

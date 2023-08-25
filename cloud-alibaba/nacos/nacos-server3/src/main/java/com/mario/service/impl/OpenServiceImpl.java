@@ -19,7 +19,8 @@ public class OpenServiceImpl implements OpenApiService {
     private Integer serverPort;
 
     @Override
-    public String getServiceName() {
-        return serviceName + ":" + serverPort;
+    public String getServiceName() throws Exception {
+        throw new Exception("模拟服务异常，测试远程调度");
+       // return serviceName + ":" + serverPort;
     }
 }
