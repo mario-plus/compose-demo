@@ -1,5 +1,6 @@
 package com.mario.block;
 
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,9 +15,15 @@ public class FallbackHandler {
     /**
      * 方法必须是static
      * 两者配合使用： fallback = "businessExceptionHandler", fallbackClass = FallbackHandler.class
-     * */
-    public static String businessExceptionHandler(String name) {
-        return "业务执行异常" + name;
+     * fallback可以处理所有类型异常，包括限流异常和业务异常
+     * 使用fallback时，方法签名参数可以与原方法完全一致，或者也接受在参数的最后位置补充Throwable参数
+     */
+    public static String businessExceptionHandler(String name, Throwable throwable) {
+        return "业务执行异常处理" + name;
     }
 
+
+    public static String businessOpenFeignHandler(Throwable throwable) {
+        return "业务执行异常处理OpenFeign";
+    }
 }

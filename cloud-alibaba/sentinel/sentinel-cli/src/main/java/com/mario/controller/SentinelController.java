@@ -1,4 +1,4 @@
-package com.mario.limitCur;
+package com.mario.controller;
 
 import com.alibaba.csp.sentinel.SphO;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;

@@ -4,6 +4,10 @@ spring:
   application:
     name: sonLApplication
   cloud:
+    compatibility-verifier:
+      enabled: false
     nacos:
       discovery:
         server-addr: 192.168.20.133:8848
+  main:
+    allow-circular-references: true
