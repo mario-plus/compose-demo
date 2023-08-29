@@ -23,4 +23,9 @@ public class OpenServiceImpl implements OpenApiService {
         return serviceName + ":" + serverPort;
     }
 
+    @Override
+    public String getArea() {
+        return "宝安区1";
+    }
+
 }

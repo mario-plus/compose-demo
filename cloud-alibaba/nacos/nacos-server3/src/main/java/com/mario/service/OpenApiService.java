@@ -6,4 +6,6 @@ package com.mario.service;
  */
 public interface OpenApiService {
     String getServiceName() throws Exception;
+
+    String getProvince();
 }

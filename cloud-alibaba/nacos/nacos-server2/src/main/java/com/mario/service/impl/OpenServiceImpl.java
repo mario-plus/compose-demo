@@ -22,4 +22,9 @@ public class OpenServiceImpl implements OpenApiService {
     public String getServiceName() {
         return serviceName + ":" + serverPort;
     }
+
+    @Override
+    public String getProvince() {
+        return "广东省1";
+    }
 }

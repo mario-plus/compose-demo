@@ -23,4 +23,9 @@ public class OpenServiceImpl implements OpenApiService {
         throw new Exception("模拟服务异常，测试远程调度");
        // return serviceName + ":" + serverPort;
     }
+
+    @Override
+    public String getProvince() {
+        return "广东省2";
+    }
 }

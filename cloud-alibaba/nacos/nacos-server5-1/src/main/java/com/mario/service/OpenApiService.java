@@ -6,4 +6,7 @@ package com.mario.service;
  */
 public interface OpenApiService {
     String getServiceName();
+
+    String getCity();
+
 }
