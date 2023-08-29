@@ -1,0 +1,10 @@
+server:
+  port: 8500
+spring:
+  application:
+    name: sentinel-cli-application
+  main:
+    allow-circular-references: true
+  cloud:
+    compatibility-verifier:
+      enabled: false
