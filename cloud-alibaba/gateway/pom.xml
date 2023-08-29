@@ -14,7 +14,15 @@
     <modules>
         <module>gateway-cli</module>
     </modules>
-
+    <dependencies>
+        <!--SpringCloudGateway则是基于Spring5中提供的WebFlux，属于响应式编程的实现-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.7.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

@@ -10,7 +10,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>gateway-cli</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>${cloud.alibaba.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-gateway -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <version>${spring.cloud.version}</version>
+        </dependency>
 
+    </dependencies>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

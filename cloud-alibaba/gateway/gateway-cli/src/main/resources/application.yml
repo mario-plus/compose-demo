@@ -3,3 +3,17 @@ server:
 spring:
   application:
     name: gateway-cli-application
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.20.133:8848
+    gateway:
+      discovery:
+        locator:
+          # 通过服务的serviceId转发到具体的服务实例
+          enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
