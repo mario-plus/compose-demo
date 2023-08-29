@@ -1,0 +1,6 @@
+server:
+  port: 8503
+
+spring:
+  application:
+    name: sonLApplication

@@ -16,7 +16,7 @@ public class NaCosOpenApiServiceCallbackFactory implements FallbackFactory<Nacos
         return new NacosOpenApiService() {
             @Override
             public String getServiceName() {
-                return "fallbackFactory: 服务出错，熔断";
+                return "fallbackFactory: 服务降级，熔断";
             }
         };
     }

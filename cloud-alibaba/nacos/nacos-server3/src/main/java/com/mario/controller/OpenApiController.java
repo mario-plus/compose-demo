@@ -1,4 +1,4 @@
-package com.mario.limitCur;
+package com.mario.controller;
 
 import com.mario.service.OpenApiService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +19,7 @@ public class OpenApiController {
     }
 
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "/getServiceName")
-    public String getServiceName() {
+    public String getServiceName() throws Exception {
         return openApiService.getServiceName();
     }
 }

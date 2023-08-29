@@ -1,4 +1,4 @@
-package com.mario.limitCur;
+package com.mario.controller;
 
 import com.mario.service.ZkService;
 import org.apache.zookeeper.data.Stat;
