@@ -15,6 +15,10 @@
         <module>nacos-server2</module>
         <module>nacos-server3</module>
         <module>nacos-server4</module>
+        <module>nacos-server5-1</module>
+        <module>nacos-server5-3</module>
+        <module>nacos-server6-1</module>
+        <module>nacos-server6-3</module>
     </modules>
     <dependencies>
         <dependency>
