@@ -22,6 +22,9 @@ import java.util.List;
 @RestController
 public class SentinelController {
 
+    /**
+     * 手动开启规则流
+     */
     @GetMapping("hello")
     public String hello() {
         boolean testSphO = SphO.entry("hello");
@@ -46,11 +49,25 @@ public class SentinelController {
         return "hello sentinel:" + name;
     }
 
-    @SentinelResource(value = "sayHelloException", fallback = "businessExceptionHandler", fallbackClass = FallbackHandler.class)
+    @SentinelResource(fallback = "businessExceptionHandler", fallbackClass = FallbackHandler.class)
     @GetMapping("sayHelloException")
     public String sayHelloException(String name) throws Exception {
         throw new Exception("business exception:" + name);
+    }
 
+
+    /**
+     * 当同时配置 fallback 和 blockHandler
+     * blockHandler仅处理限流异常，fallback处理所有异常
+     * 如果仅有fallback，限流异常也会被fallback拦截处理
+     * 如果两者同时存在，限流异常有blockHandler处理，其他异常由fallback处理（BlockException不会进入fallback）
+     */
+    @SentinelResource(value = "sayHelloQE",
+            blockHandler = "blockHandlerMethod", blockHandlerClass = BlockHandler.class,
+            fallback = "businessExceptionHandler", fallbackClass = FallbackHandler.class)
+    @GetMapping("sayHelloQE")
+    public String sayHelloQE(String name) throws Exception {
+        throw new Exception("business exception:" + name);
     }
 
 
