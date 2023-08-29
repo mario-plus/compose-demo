@@ -1,6 +1,9 @@
 server:
   port: 8503
-
 spring:
   application:
     name: sonLApplication
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.20.133:8848
