@@ -12,6 +12,29 @@ spring:
         locator:
           # 通过服务的serviceId转发到具体的服务实例
           enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: province
+          # 此处如果出现负载，就需要引用spring-cloud-loadbalancer，直接填url就不需要
+          uri: lb://nacos-server
+          predicates:
+            - Path=/province/**
+          filters:
+            - StripPrefix=1
+        - id: city
+          uri: lb://nacos-server5
+          predicates:
+            - Path=/city/**
+          filters:
+            - StripPrefix=1
+        - id: area
+          uri: lb://nacos-server6
+          predicates:
+            - Path=/area/**
+          filters:
+            - StripPrefix=1
+
+
 management:
   endpoints:
     web:
