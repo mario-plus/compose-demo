@@ -20,8 +20,9 @@ public class OpenServiceImpl implements OpenApiService {
 
     @Override
     public String getServiceName() throws Exception {
+        Thread.sleep(10 * 1000);
         throw new Exception("模拟服务异常，测试远程调度");
-       // return serviceName + ":" + serverPort;
+        // return serviceName + ":" + serverPort;
     }
 
     @Override
