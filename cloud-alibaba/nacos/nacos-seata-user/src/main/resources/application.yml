@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: nacos-seata-user
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.20.133:8848
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.3.50.123:3306/seata?Unicode=true&characterEncoding=UTF-8
+    username: root
+    password: Unilumin123*
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 11002
