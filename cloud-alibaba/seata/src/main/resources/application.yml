@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: seata-client-test
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.20.133:8848
+  main:
+    allow-circular-references: true
+server:
+  port: 11004
+
+seata:
+  application-id: ${spring.application.name}
+  tx-service-group: default_tx_group
+  enable-auto-data-source-proxy: true
+  data-source-proxy-mode: AT
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 192.168.20.133:8848
+      namespace:
+      cluster: seata-server
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+  service:
+    vgroup-mapping:
+      default_tx_group: seata-server
+  config:
+    type: nacos
+    nacos:
+      server-addr: 192.168.20.133:8848
+      namespace:
+      dataId: seata.properties
+      group: SEATA_GROUP
+      username: nacos
+      password: nacos
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
