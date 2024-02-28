@@ -1,5 +1,6 @@
 package com.mario.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mario.entity.SeataUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 @Mapper
-public interface SeataUserMapper {
+public interface SeataUserMapper extends BaseMapper<SeataUser> {
 
     SeataUser selectById(@Param("id") int id);
 

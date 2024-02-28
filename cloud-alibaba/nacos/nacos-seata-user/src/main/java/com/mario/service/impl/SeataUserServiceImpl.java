@@ -16,6 +16,7 @@ public class SeataUserServiceImpl implements SeataUserService {
 
     SeataUserMapper seataUserMapper;
 
+
     @Autowired
     public void setSeataUserMapper(SeataUserMapper seataUserMapper) {
         this.seataUserMapper = seataUserMapper;
@@ -34,4 +35,5 @@ public class SeataUserServiceImpl implements SeataUserService {
         }
         seataUserMapper.incScore(id, seataUser.getScore() + score);
     }
+
 }

@@ -37,6 +37,6 @@ seata:
   service:
     vgroup-mapping:
       seata-demo: unilumin # 必须和服务器配置一样
-  data-source-proxy-mode: XA
+  data-source-proxy-mode: AT
 server:
   port: 11001

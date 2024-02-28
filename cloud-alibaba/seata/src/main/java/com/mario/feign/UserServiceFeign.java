@@ -16,4 +16,6 @@ public interface UserServiceFeign {
     @GetMapping("/incScore")
     void incScore(@RequestParam("id") int id, @RequestParam("score") int score) throws Exception;
 
+    @GetMapping("/incTccScore")
+    void incTccScore(@RequestParam("id") int id, @RequestParam("score") int score);
 }

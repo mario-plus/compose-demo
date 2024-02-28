@@ -11,4 +11,6 @@ public interface SeataUserService {
 
     void incScore(int id, int score) throws Exception;
 
+
+
 }

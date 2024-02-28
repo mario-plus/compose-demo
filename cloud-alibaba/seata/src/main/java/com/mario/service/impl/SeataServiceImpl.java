@@ -61,7 +61,10 @@ public class SeataServiceImpl implements SeataService {
         resourceServiceFeign.disCountById(seataOrder.getResourceId(), 1);
 
         //加用户积分
-        userServiceFeign.incScore(seataOrder.getCustomerId(), cost);
+        //userServiceFeign.incScore(seataOrder.getCustomerId(), cost);
+
+        //TCC 加用户积分
+        userServiceFeign.incTccScore(seataOrder.getCustomerId(), cost);
 
     }
 

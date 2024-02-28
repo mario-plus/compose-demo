@@ -2,6 +2,7 @@ package com.mario.controller;
 
 import com.mario.entity.SeataUser;
 import com.mario.service.SeataUserService;
+import com.mario.service.SeataUserTccService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,15 @@ public class SeataUserController {
 
     SeataUserService seataUserService;
 
+
+
+    SeataUserTccService seataUserTccService;
+
+    @Autowired
+    public void setSeataUserTccService(SeataUserTccService seataUserTccService) {
+        this.seataUserTccService = seataUserTccService;
+    }
+
     @Autowired
     public void setSeataUserService(SeataUserService seataUserService) {
         this.seataUserService = seataUserService;
@@ -31,5 +41,10 @@ public class SeataUserController {
     @GetMapping("/incScore")
     public void incScore(int id, int score) throws Exception {
         seataUserService.incScore(id, score);
+    }
+
+    @GetMapping("/incTccScore")
+    public void incTccScore(int id, int score) throws Exception {
+        seataUserTccService.prepare(id, score);
     }
 }
