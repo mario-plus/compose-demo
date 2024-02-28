@@ -3,6 +3,7 @@ package com.mario.service.impl;
 import com.mario.entity.SeataOrder;
 import com.mario.mapper.SeataOrderMapper;
 import com.mario.service.SeataOrderService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

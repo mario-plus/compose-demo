@@ -47,10 +47,6 @@ public class SeataServiceImpl implements SeataService {
     @Override
     public void shopping(int resourceId, int cost, int userId) throws Exception {
 
-        String xid = RootContext.getXID();
-        String xid1 = GlobalTransactionContext.getCurrentOrCreate().getXid();
-        log.info("refreshUserAccountTest xid={}, xid1={}", xid, xid1);
-
         SeataOrder seataOrder = new SeataOrder();
         Random random = new Random();
         int i = random.nextInt(100000);
@@ -58,7 +54,6 @@ public class SeataServiceImpl implements SeataService {
         seataOrder.setCost(cost);
         seataOrder.setCustomerId(userId);
         seataOrder.setResourceId(resourceId);
-
         //创建订单
         orderServiceFeign.createOrder(seataOrder);
 

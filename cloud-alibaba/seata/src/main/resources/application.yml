@@ -5,37 +5,30 @@ spring:
     nacos:
       discovery:
         server-addr: 192.168.20.133:8848
+        cluster-name: unilumin
+        group: SEATA_GROUP
   main:
     allow-circular-references: true
 server:
   port: 11004
 
+# Seata 配置
 seata:
-  application-id: ${spring.application.name}
-  tx-service-group: default_tx_group
-  enable-auto-data-source-proxy: true
-  data-source-proxy-mode: AT
   registry:
     type: nacos
     nacos:
-      server-addr: 192.168.20.133:8848
-      namespace:
-      cluster: seata-server
+      # Nacos 服务地址
+      server-addr: ${spring.cloud.nacos.discovery.server-addr}
       group: SEATA_GROUP
+      namespace: ""
+      application: seata-server # 必须和服务器配置一样
       username: nacos
       password: nacos
+  tx-service-group: seata-demo  # 必须和服务器配置一样
   service:
     vgroup-mapping:
-      default_tx_group: seata-server
-  config:
-    type: nacos
-    nacos:
-      server-addr: 192.168.20.133:8848
-      namespace:
-      dataId: seata.properties
-      group: SEATA_GROUP
-      username: nacos
-      password: nacos
+      seata-demo: unilumin # 必须和服务器配置一样
+  data-source-proxy-mode: XA
 
 
 management:

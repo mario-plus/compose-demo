@@ -3,6 +3,7 @@ package com.mario.service.impl;
 import com.mario.entity.SeataUser;
 import com.mario.mapper.SeataUserMapper;
 import com.mario.service.SeataUserService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

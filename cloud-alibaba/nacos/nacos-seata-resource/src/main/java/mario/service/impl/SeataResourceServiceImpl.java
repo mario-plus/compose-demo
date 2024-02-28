@@ -1,5 +1,6 @@
 package mario.service.impl;
 
+import io.seata.spring.annotation.GlobalTransactional;
 import mario.entity.SeataResource;
 import mario.mapper.SeataResourceMapper;
 import mario.service.SeataResourceService;
