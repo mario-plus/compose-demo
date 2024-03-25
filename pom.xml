@@ -12,6 +12,7 @@
     <modules>
         <module>component</module>
         <module>cloud-alibaba</module>
+        <module>dockerDemo</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -20,16 +21,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-
-    <properties>
-        <!--properties节点中设置docker镜像的前缀“springboot”-->
-        <docker.image.prefix>app</docker.image.prefix>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.7.0</version>
         </dependency>
     </dependencies>
 
@@ -39,25 +34,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-<!--            <plugin>-->
-<!--                &lt;!&ndash; docker-maven插件&ndash;&gt;-->
-<!--                <groupId>com.spotify</groupId>-->
-<!--                <artifactId>docker-maven-plugin</artifactId>-->
-<!--                <version>1.2.2</version>-->
-<!--                <configuration>-->
-<!--                    <dockerHost>http://116.62.220.251:2375</dockerHost>-->
-<!--                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
-<!--                    <dockerDirectory>src/main/docker</dockerDirectory>-->
-<!--                    <resources>-->
-<!--                        <resource>-->
-<!--                            <targetPath>/</targetPath>-->
-<!--                            <directory>${project.build.directory}</directory>-->
-<!--                            <include>${project.build.finalName}.jar</include>-->
-<!--                        </resource>-->
-<!--                    </resources>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
         </plugins>
     </build>
 </project>
