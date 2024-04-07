@@ -1,7 +1,6 @@
 package com.mario.service;
 
-import org.apache.curator.framework.recipes.cache.CuratorCache;
-import org.apache.curator.framework.recipes.cache.CuratorCacheListener;
+
 import org.apache.zookeeper.data.Stat;
 
 import java.util.List;

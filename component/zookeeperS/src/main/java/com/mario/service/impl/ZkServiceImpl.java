@@ -4,6 +4,7 @@ package com.mario.service.impl;
 import com.mario.service.ZkService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.recipes.locks.InterProcessReadWriteLock;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * @author zxz
  * @date 2023年08月18日 10:10
+ * zookeeper基本使用
  */
 @Slf4j
 @Service
@@ -56,5 +58,21 @@ public class ZkServiceImpl implements ZkService {
     }
 
 
+
+
+    public void getReadLock(String path) throws Exception {
+        InterProcessReadWriteLock lock = new InterProcessReadWriteLock(curatorFramework, path);
+        lock.readLock().acquire();
+        System.out.println("获取-ReadLock");//do something
+        lock.readLock().release();
+    }
+
+
+    public void getWriteLock(String path) throws Exception {
+        InterProcessReadWriteLock lock = new InterProcessReadWriteLock(curatorFramework, path);
+        lock.writeLock().acquire();
+        System.out.println("获取-WriteLock");//do something
+        lock.writeLock().release();
+    }
 
 }
