@@ -1,0 +1,11 @@
+server:
+  port: 40000
+spring:
+  profiles:
+    active: company
+  kafka:
+    bootstrap-servers:
+      - 192.168.20.128:9092
+      - 192.168.20.129:9092
+      - 192.168.20.130:9092
+
