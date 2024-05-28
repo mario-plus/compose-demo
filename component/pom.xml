@@ -15,6 +15,7 @@
         <module>zookeeperS</module>
         <module>redisC</module>
         <module>kafkaC</module>
+        <module>message-queue</module>
     </modules>
 
 

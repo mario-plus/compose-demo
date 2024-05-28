@@ -13,6 +13,7 @@
         <module>component</module>
         <module>cloud-alibaba</module>
         <module>dockerDemo</module>
+        <module>Converter</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
