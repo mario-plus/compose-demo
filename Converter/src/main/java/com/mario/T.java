@@ -1,19 +1,20 @@
 package com.mario;
 
 import com.mario.converter.HexMapConverter;
-import com.mario.converter.SplitMapConverter;
-import com.mario.converter.StringMapConverter;
 import com.mario.rule.HexRule;
-import com.mario.rule.SplitRule;
-import com.mario.rule.StringRule;
+import com.mario.service.ET4000IKeyRulesMapping;
 import com.mario.utils.ByteUtil;
 
-import java.util.Arrays;
 import java.util.Map;
 
 public class T {
 
     public static void main(String[] args) {
+        ET4000IKeyRulesMapping et4000KeyRulesMapping = new ET4000IKeyRulesMapping();
+        et4000KeyRulesMapping.initRules();
+
+
+        System.out.println("...");
 
         String message = "zhouxiaoze,zm,18,19.00,test#fuyong";
 

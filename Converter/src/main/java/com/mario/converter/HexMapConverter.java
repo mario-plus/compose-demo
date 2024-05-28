@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
 
+/**
+ * 已知数据格式情况下转换成Map（即已知每一字节代表的意思）
+ */
 @Slf4j
 public class HexMapConverter extends MapConverter<HexRule, byte[]> {
 
@@ -20,7 +23,6 @@ public class HexMapConverter extends MapConverter<HexRule, byte[]> {
     }
 
 
-    //全局属性，比如大小端模式
     @Override
     protected Map<String, Object> doMapConverter(byte[] params) {
         String contentHex = ByteUtil.byte2Hex(params);
@@ -61,13 +63,6 @@ public class HexMapConverter extends MapConverter<HexRule, byte[]> {
         return super.beforeConverter(params);
     }
 
-
-//            if (hexRule.getChild() != null) {
-//                HexMapConverter hexMapConverter = new HexMapConverter();
-//                hexMapConverter.addRules(hexRule.getChild());
-//                Map<String, Object> hexObjectMap = hexMapConverter.doMapConverter(ByteUtil.Hex2Bytes(hexSub));
-//                data.put(hexRule.getKey(), hexObjectMap);
-//            }
 
 
 }
