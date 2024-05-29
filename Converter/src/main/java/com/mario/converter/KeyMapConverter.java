@@ -6,18 +6,19 @@ import com.mario.rule.Rules;
 import com.mario.rule.SplitRule;
 import com.mario.rule.StringRule;
 import com.mario.service.IKeyRulesMapping;
-import lombok.Setter;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Setter
+
 public class KeyMapConverter<IR extends Rules> extends MapConverter<IR, byte[]> {
 
-
-    private IKeyRulesMapping<IR> keyRulesMapping;
+    private final IKeyRulesMapping<IR> keyRulesMapping;
+    public KeyMapConverter(IKeyRulesMapping<IR> keyRulesMapping) {
+        this.keyRulesMapping = keyRulesMapping;
+    }
 
     @Override
     protected Map<String, Object> doMapConverter(byte[] params) {
@@ -36,21 +37,14 @@ public class KeyMapConverter<IR extends Rules> extends MapConverter<IR, byte[]> 
         byte[] content = keyRulesMapping.getContent(params);
 
         IR ir = rules.get(0);
-
-        MapConverter converter = null;
-
         if (ir instanceof HexRule) {
-            converter = new HexMapConverter().addRules(rules.stream().map(e -> (HexRule) e).collect(Collectors.toList()));
+            return new HexMapConverter().addRules(rules.stream().map(e -> (HexRule) e).collect(Collectors.toList())).convert(content);
         } else if (ir instanceof SplitRule) {
-            converter = new SplitMapConverter().addRules(rules.stream().map(e -> (SplitRule) e).collect(Collectors.toList()));
+            //return new SplitMapConverter().addRules(rules.stream().map(e -> (SplitRule) e).collect(Collectors.toList())).convert(new String(content));
         } else if (ir instanceof StringRule) {
-            converter = new StringMapConverter().addRules(rules.stream().map(e -> (StringRule) e).collect(Collectors.toList()));
+            return new StringMapConverter().addRules(rules.stream().map(e -> (StringRule) e).collect(Collectors.toList())).convert(new String(content));
         }
-
-        if (converter == null) {
-            return Collections.emptyMap();
-        }
-        return converter.convert(content);
+        return Collections.emptyMap();
     }
 
 

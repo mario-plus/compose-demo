@@ -1,4 +1,4 @@
-package com.mario;
+package com.mario.enums;
 
 public enum MsgType {
 

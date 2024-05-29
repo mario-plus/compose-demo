@@ -1,4 +1,4 @@
-package com.mario;
+package com.mario.enums;
 
 public enum DataType {
 
@@ -9,7 +9,7 @@ public enum DataType {
     BOOLEAN,
     BYTE,
     STRING,
-    HEx,
+    HEX,
     BIT/*按位解析，2进制数，转为int类型*/,
 
 

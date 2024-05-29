@@ -1,9 +1,9 @@
 package com.mario.converter;
 
-import com.mario.DataType;
+import com.mario.enums.DataType;
 import com.mario.utils.ByteUtil;
 
-import java.util.Arrays;
+import java.nio.charset.StandardCharsets;
 
 public class DataFormater {
 
@@ -12,22 +12,25 @@ public class DataFormater {
      * 基本数据类型转换
      */
     public static Object format(String data, DataType dataType) {
-
-        switch (dataType) {
-            case INTEGER:
-                return Integer.valueOf(data);
-            case LONG:
-                return Long.valueOf(data);
-            case DOUBLE:
-                return Double.valueOf(data);
-            case FLOAT:
-                return Float.valueOf(data);
-            case BOOLEAN:
-                return Boolean.valueOf(data);
-            case BYTE:
-                return Byte.valueOf(data);
-            default:
-                return data;
+        try {
+            switch (dataType) {
+                case INTEGER:
+                    return Integer.valueOf(data);
+                case LONG:
+                    return Long.valueOf(data);
+                case DOUBLE:
+                    return Double.valueOf(data);
+                case FLOAT:
+                    return Float.valueOf(data);
+                case BOOLEAN:
+                    return Boolean.valueOf(data);
+                case BYTE:
+                    return Byte.valueOf(data);
+                default:
+                    return data;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("error to format data:" + data + ",dataType：" + dataType.name());
         }
     }
 
@@ -40,7 +43,7 @@ public class DataFormater {
         }
         switch (dataType) {
             case STRING:
-                return new String(data);
+                return new String(data, StandardCharsets.UTF_8);
             case INTEGER:
                 return Integer.parseInt(ByteUtil.byte2Hex(data), 16);
             case LONG:

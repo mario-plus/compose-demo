@@ -1,6 +1,6 @@
 package com.mario.rule;
 
-import com.mario.DataType;
+import com.mario.enums.DataType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +16,6 @@ public class HexRule extends Rules {
 
     /**
      * 字节为单位，下标
-     * list有序，可以不传
      */
     private Integer startIndex;
 

@@ -26,11 +26,14 @@ public abstract class IKeyRulesMapping<IR> implements IKeyRulesService<IR>, IKey
         return keyMapping.get(key);
     }
 
-
     public void addKeyMapping(Object key, List<IR> rules) {
         keyMapping.put(String.valueOf(key), rules);
     }
 
+
+    /**
+     * 初始化规则
+     * */
     abstract void doInitRules();
 
 
