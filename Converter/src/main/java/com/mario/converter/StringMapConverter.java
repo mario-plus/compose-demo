@@ -11,8 +11,6 @@ import java.util.*;
 @Setter
 public class StringMapConverter extends MapConverter<StringRule, String> {
 
-    private int startIndex;
-
     @Override
     protected Map<String, Object> doMapConverter(String str) {
         List<StringRule> rules = getRules();

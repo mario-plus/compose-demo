@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -38,5 +39,13 @@ public class SplitRule extends Rules {
 
 
     private List<SplitRule> child;
+
+    public SplitRule addChild(SplitRule hexRule) {
+        if (child == null) {
+            child = new ArrayList<>();
+        }
+        child.add(hexRule);
+        return this;
+    }
 
 }

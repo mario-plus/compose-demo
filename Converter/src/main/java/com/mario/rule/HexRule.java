@@ -1,6 +1,7 @@
 package com.mario.rule;
 
 import com.mario.enums.DataType;
+import com.mario.service.CustomHandler;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,13 +15,15 @@ import java.util.List;
 public class HexRule extends Rules {
 
 
+    private CustomHandler handler;
+
     /**
-     * 字节为单位，下标
+     * 字节为单位，下标,不能为空
      */
     private Integer startIndex;
 
     /**
-     * 数据长度，如一个值包含多个字节
+     * 数据长度，如一个值包含多个字节，长度未知可不填
      */
     private Integer length;
 

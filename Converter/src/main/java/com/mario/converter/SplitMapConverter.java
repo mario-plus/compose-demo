@@ -4,7 +4,10 @@ package com.mario.converter;
 import com.mario.enums.DataType;
 import com.mario.rule.SplitRule;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -68,17 +71,11 @@ public class SplitMapConverter extends MapConverter<SplitRule, String> {
                 .addRule(SplitRule.builder().index(1).key("company").type(DataType.STRING).build())
                 .addRule(SplitRule.builder().index(2).key("age").type(DataType.INTEGER).build())
                 .addRule(SplitRule.builder().index(3).key("money").type(DataType.DOUBLE).build())
-                .addRule(SplitRule.builder().index(4).key("info").split("#")
-                        .child(
-                                Arrays.asList(
-                                        SplitRule.builder().index(0).key("infoName").type(DataType.STRING).build(),
-                                        SplitRule.builder().index(1).key("infoMsg").split("%")
-                                                .child(
-                                                        Arrays.asList(
-                                                                SplitRule.builder().index(0).key("m1").type(DataType.STRING).build(),
-                                                                SplitRule.builder().index(1).key("m2").type(DataType.INTEGER).build()
-                                                        )
-                                                ).build())).build())
+                .addRule(SplitRule.builder().index(4).key("info").split("#").build()
+                        .addChild(SplitRule.builder().index(0).key("infoName").type(DataType.STRING).build())
+                        .addChild(SplitRule.builder().index(1).key("infoMsg").split("%").build()
+                                .addChild(SplitRule.builder().index(0).key("m1").type(DataType.STRING).build())
+                                .addChild(SplitRule.builder().index(1).key("m2").type(DataType.INTEGER).build())))
                 .convert(message);
         System.out.println(stringObjectMap1.toString());
     }

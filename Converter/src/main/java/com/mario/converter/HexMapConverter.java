@@ -2,6 +2,7 @@ package com.mario.converter;
 
 import com.mario.enums.DataType;
 import com.mario.rule.HexRule;
+import com.mario.service.CustomHandler;
 import com.mario.utils.ByteUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +25,8 @@ public class HexMapConverter extends MapConverter<HexRule, byte[]> {
         HashMap<String, Object> data = new HashMap<>();
         rules.forEach(hexRule -> {
             int start = hexRule.getStartIndex() * 2;
-            int end = start + hexRule.getLength() * 2;
+            //未知长度，则元素长度为剩余长度
+            int end = hexRule.getLength() == null ? contentHex.length() : start + hexRule.getLength() * 2;
             if (start > contentHex.length() || end > contentHex.length()) {
                 log.error("rule error,key is {}", hexRule.getKey());
                 data.put(hexRule.getKey(), null);
@@ -32,8 +34,14 @@ public class HexMapConverter extends MapConverter<HexRule, byte[]> {
                 //throw new RuntimeException("rule error,key is " + hexRule.getKey());
             }
             String hexSub = contentHex.substring(start, end);
+
             if (!hexRule.isBigEndian()) {
                 hexSub = ByteUtil.exchangeBytes(hexSub);
+            }
+            if (hexRule.getHandler() != null) {
+                Map<String, Object> stringObjectMap = hexRule.getHandler().contentConverter(ByteUtil.Hex2Bytes(hexSub));
+                data.putAll(stringObjectMap);
+                return;
             }
             if (hexRule.getType() == DataType.BIT) {
                 String binString = ByteUtil.getBinLFromDec(ByteUtil.getDecFromHex(hexSub), hexSub.length() * 4);
@@ -66,7 +74,26 @@ public class HexMapConverter extends MapConverter<HexRule, byte[]> {
     public static void main(String[] args) {
 
         String message2 = "CC 55 CC 55 01 00 00 01 0200 11 00 81 00 0D 00 05 00 00 00 02 00 00 00 02 00 00 00 01".replace(" ", "");
-        Map<String, Object> convert = new HexMapConverter().addRule(HexRule.builder().key("head").startIndex(0).length(4).build()).addRule(HexRule.builder().key("packetType").startIndex(4).length(2).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("protocolVersion").startIndex(6).length(2).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("seq").startIndex(8).length(2).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("length").startIndex(10).length(2).bigEndian(false).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("tag").startIndex(12).length(2).bigEndian(false).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("contentLength").startIndex(14).length(2).bigEndian(false).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("programCount").startIndex(16).length(4).bigEndian(false).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("programIndex").startIndex(20).length(4).bigEndian(false).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("programId").startIndex(24).length(4).bigEndian(false).type(DataType.INTEGER).build()).addRule(HexRule.builder().key("programName").startIndex(28).length(128).bigEndian(false).type(DataType.INTEGER).build()).convert(ByteUtil.Hex2Bytes(message2));
+        Map<String, Object> convert = new HexMapConverter()
+                .addRule(HexRule.builder().key("head").startIndex(0).length(4).build())
+                .addRule(HexRule.builder().key("packetType").startIndex(4).length(2).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().key("protocolVersion").startIndex(6).length(2).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().key("seq").startIndex(8).length(2).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().key("length").startIndex(10).length(2).bigEndian(false).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().key("tag").startIndex(12).length(2).bigEndian(false).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().key("contentLength").startIndex(14).length(2).bigEndian(false).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().key("programCount").startIndex(16).length(4).bigEndian(false).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().key("programIndex").startIndex(20).length(4).bigEndian(false).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().key("programId").startIndex(24).length(4).bigEndian(false).type(DataType.INTEGER).build())
+                .addRule(HexRule.builder().startIndex(28).handler(new CustomHandler() {
+                    @Override
+                    public Map<String, Object> contentConverter(byte[] data) {
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("eee", 34354);
+                        return map;
+                    }
+                }).build())
+                .convert(ByteUtil.Hex2Bytes(message2));
         System.out.println(convert);
 
 

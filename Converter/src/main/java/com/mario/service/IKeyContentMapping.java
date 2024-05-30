@@ -9,7 +9,7 @@ import java.util.Map;
  * 定义content获取规则
  * 定义key对应的规则集合
  */
-public abstract class IKeyRulesMapping<IR> implements IKeyRulesService<IR>, IKeyHandler, IContentHandler {
+public abstract class IKeyContentMapping<IR> implements IKeyRulesService<IR>, IExtractKeyContent {
 
     Map<String, List<IR>> keyMapping;
 

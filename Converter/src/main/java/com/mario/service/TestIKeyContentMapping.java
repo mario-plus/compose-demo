@@ -6,10 +6,12 @@ import com.mario.utils.ByteUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
-public class TestIKeyRulesMapping extends IKeyRulesMapping<HexRule> {
+public class TestIKeyContentMapping extends IKeyContentMapping<HexRule> {
 
     @Override
     void doInitRules() {
@@ -17,6 +19,8 @@ public class TestIKeyRulesMapping extends IKeyRulesMapping<HexRule> {
         addKeyMapping(275, pictureRules());
         addKeyMapping(309, deviceName());
     }
+
+
 
 
     @Override
@@ -43,7 +47,14 @@ public class TestIKeyRulesMapping extends IKeyRulesMapping<HexRule> {
         hexRules.add(HexRule.builder().key("programCount").startIndex(0).length(4).bigEndian(false).type(DataType.INTEGER).build());
         hexRules.add(HexRule.builder().key("programIndex").startIndex(4).length(4).bigEndian(false).type(DataType.INTEGER).build());
         hexRules.add(HexRule.builder().key("programId").startIndex(8).length(4).bigEndian(false).type(DataType.INTEGER).build());
-        hexRules.add(HexRule.builder().key("programName").startIndex(12).length(128).bigEndian(false).type(DataType.INTEGER).build());
+        hexRules.add(HexRule.builder().startIndex(12).handler(new CustomHandler() {
+            @Override
+            public Map<String, Object> contentConverter(byte[] data) {
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("eee", 34354);
+                return map;
+            }
+        }).build());
         return hexRules;
     }
 
